@@ -1,0 +1,560 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#080b18">
+  <meta name="description" content="NEXORA — Think bigger. Build beyond.">
+  <title>NEXORA — Think Beyond</title>
+
+  <style>
+    :root {
+      --bg: #080b18;
+      --panel: #11162a;
+      --text: #f7f8ff;
+      --muted: #a5aec7;
+      --blue: #6c63ff;
+      --cyan: #41d9ff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 85px;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(1120px, 90%);
+      margin: auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(8, 11, 24, .88);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid #ffffff12;
+    }
+
+    nav {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 1.55rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+    }
+
+    .logo span {
+      color: var(--cyan);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 27px;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      transition: color .2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--cyan);
+    }
+
+    .menu-button {
+      display: none;
+      background: transparent;
+      color: white;
+      border: 1px solid #ffffff30;
+      padding: 8px 12px;
+      border-radius: 9px;
+      cursor: pointer;
+    }
+
+    .hero {
+      min-height: 650px;
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      align-items: center;
+      gap: 40px;
+      padding-top: 65px;
+      padding-bottom: 85px;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 7px 13px;
+      border: 1px solid #6c63ff70;
+      border-radius: 100px;
+      color: var(--cyan);
+      font-size: .82rem;
+      margin-bottom: 23px;
+      background: #6c63ff12;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 7vw, 5.7rem);
+      line-height: 1.02;
+      letter-spacing: -3px;
+      margin-bottom: 25px;
+    }
+
+    .gradient {
+      background: linear-gradient(100deg, #8b7dff, #41d9ff);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero p {
+      max-width: 540px;
+      color: var(--muted);
+      font-size: 1.08rem;
+      margin-bottom: 30px;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+    }
+
+    .btn {
+      display: inline-block;
+      border: 0;
+      border-radius: 10px;
+      padding: 13px 21px;
+      font-size: .96rem;
+      font-weight: bold;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 30px #6c63ff30;
+    }
+
+    .primary {
+      background: linear-gradient(100deg, #6c63ff, #4c9dff);
+      color: white;
+    }
+
+    .secondary {
+      border: 1px solid #ffffff35;
+      color: white;
+      background: #ffffff08;
+    }
+
+    .visual {
+      min-height: 370px;
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+
+    .orb {
+      width: min(310px, 75vw);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background:
+        radial-gradient(circle at 30% 25%, #c6f7ff, transparent 18%),
+        radial-gradient(circle at 40% 35%, #8877ff, transparent 35%),
+        radial-gradient(circle at 70% 70%, #00b8ff, transparent 40%),
+        linear-gradient(135deg, #27256d, #101b40);
+      box-shadow: 0 0 80px #665cff50, inset -20px -20px 70px #050817;
+      animation: float 5s ease-in-out infinite;
+    }
+
+    .orbit {
+      position: absolute;
+      width: min(390px, 95vw);
+      aspect-ratio: 1;
+      border: 1px solid #8d9dff45;
+      border-radius: 50%;
+      transform: rotate(-25deg) scaleY(.48);
+    }
+
+    .orbit.two {
+      transform: rotate(55deg) scaleY(.65);
+      border-color: #41d9ff45;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-15px) rotate(5deg); }
+    }
+
+    .section {
+      padding: 90px 0;
+    }
+
+    .section-heading {
+      text-align: center;
+      max-width: 650px;
+      margin: 0 auto 45px;
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 12px;
+    }
+
+    .section-heading p,
+    .card p {
+      color: var(--muted);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: linear-gradient(145deg, #151b33, #0e1223);
+      border: 1px solid #ffffff13;
+      border-radius: 18px;
+      padding: 27px;
+      transition: transform .25s, border-color .25s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: #6c63ff90;
+    }
+
+    .card-icon {
+      font-size: 2rem;
+      margin-bottom: 16px;
+    }
+
+    .card h3 {
+      margin-bottom: 10px;
+      font-size: 1.25rem;
+    }
+
+    .about-panel {
+      padding: 45px;
+      border-radius: 22px;
+      border: 1px solid #ffffff17;
+      background:
+        radial-gradient(ellipse at top right, #6c63ff20, transparent 50%),
+        var(--panel);
+      text-align: center;
+    }
+
+    .about-panel p {
+      color: var(--muted);
+      max-width: 700px;
+      margin: 15px auto 25px;
+    }
+
+    .contact-form {
+      max-width: 600px;
+      margin: auto;
+      display: grid;
+      gap: 15px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 15px;
+      border: 1px solid #ffffff25;
+      background: #11162a;
+      color: white;
+      border-radius: 10px;
+      font: inherit;
+      outline: none;
+    }
+
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      border-color: var(--cyan);
+    }
+
+    .contact-form textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    .form-note {
+      color: var(--muted);
+      font-size: .85rem;
+      text-align: center;
+    }
+
+    footer {
+      border-top: 1px solid #ffffff15;
+      padding: 28px 0;
+      color: var(--muted);
+      text-align: center;
+      font-size: .9rem;
+    }
+
+    #top-button {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      border: 0;
+      background: var(--blue);
+      color: white;
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: none;
+      z-index: 5;
+    }
+
+    @media (max-width: 760px) {
+      .menu-button { display: block; }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 76px;
+        left: 0;
+        right: 0;
+        padding: 25px 5%;
+        background: #0d1122;
+        flex-direction: column;
+        align-items: flex-start;
+        border-bottom: 1px solid #ffffff20;
+      }
+
+      .nav-links.open { display: flex; }
+
+      .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 65px;
+        gap: 15px;
+      }
+
+      .hero p { margin-left: auto; margin-right: auto; }
+      .actions { justify-content: center; }
+      .visual { min-height: 330px; }
+      .cards { grid-template-columns: 1fr; }
+      .section { padding: 65px 0; }
+      .about-panel { padding: 28px 20px; }
+      h1 { letter-spacing: -2px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="container">
+      <a class="logo" href="#home">NEX<span>ORA</span></a>
+
+      <button class="menu-button" id="menu-button"
+        aria-expanded="false" aria-controls="nav-links">
+        ☰ Menu
+      </button>
+
+      <div class="nav-links" id="nav-links">
+        <a href="#home">Home</a>
+        <a href="#features">Features</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero container" id="home">
+      <div>
+        <span class="tag">✦ YOUR NEXT BIG IDEA STARTS HERE</span>
+
+        <h1>Think bigger.<br><span class="gradient">Build beyond.</span></h1>
+
+        <p>
+          Welcome to NEXORA — a place for bold ideas, creative minds,
+          and people ready to explore what's possible on the internet.
+        </p>
+
+        <div class="actions">
+          <a class="btn primary" href="#features">Explore the website ↗</a>
+          <a class="btn secondary" href="#about">Discover more</a>
+        </div>
+      </div>
+
+      <div class="visual" aria-label="Animated abstract glowing sphere">
+        <div class="orbit"></div>
+        <div class="orbit two"></div>
+        <div class="orb"></div>
+      </div>
+    </section>
+
+    <section class="section" id="features">
+      <div class="container">
+        <div class="section-heading">
+          <span class="tag">WHAT WE STAND FOR</span>
+          <h2>Built for <span class="gradient">what's next.</span></h2>
+          <p>A modern digital experience that puts creativity, simplicity,
+            and innovation first.</p>
+        </div>
+
+        <div class="cards">
+          <article class="card">
+            <div class="card-icon">🚀</div>
+            <h3>Think Without Limits</h3>
+            <p>Turn ambitious ideas into something people can see,
+              explore, and experience.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">🌐</div>
+            <h3>Made for Everyone</h3>
+            <p>A responsive design that adapts to mobile phones,
+              tablets, laptops, and desktops.</p>
+          </article>
+
+          <article class="card">
+            <div class="card-icon">⚡</div>
+            <h3>Keep Moving Forward</h3>
+            <p>A flexible foundation you can expand with new pages,
+              features, and your own brand.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="container">
+        <div class="about-panel">
+          <span class="tag">OUR MISSION</span>
+          <h2>Your vision. <span class="gradient">Your world.</span></h2>
+          <p>
+            NEXORA is a starting point for building something original.
+            Customize this space with your story, your projects, your
+            business, or the community you want to create.
+          </p>
+          <a class="btn primary" href="#contact">Let's connect ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container">
+        <div class="section-heading">
+          <span class="tag">GET IN TOUCH</span>
+          <h2>Let's start a <span class="gradient">conversation.</span></h2>
+          <p>Have an idea? Write a message below.</p>
+        </div>
+
+        <form class="contact-form" id="contact-form">
+          <input name="name" placeholder="Your name"
+            autocomplete="name" required>
+          <input name="email" type="email" placeholder="Your email"
+            autocomplete="email" required>
+          <textarea name="message" placeholder="Your message"
+            required></textarea>
+          <button class="btn primary" type="submit">Prepare my message ↗</button>
+          <p class="form-note" id="form-note" aria-live="polite">
+            This demo prepares an email in your email application.
+            It does not send or store messages on a server.
+          </p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <p>© <span id="year"></span> NEXORA. Built for a world without limits.</p>
+    </div>
+  </footer>
+
+  <button id="top-button" aria-label="Back to top">↑</button>
+
+  <script>
+    const menuButton = document.getElementById("menu-button");
+    const navLinks = document.getElementById("nav-links");
+
+    menuButton.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("open");
+      menuButton.setAttribute("aria-expanded", String(isOpen));
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuButton.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+
+    const topButton = document.getElementById("top-button");
+
+    window.addEventListener("scroll", () => {
+      topButton.style.display = window.scrollY > 350 ? "block" : "none";
+    });
+
+    topButton.addEventListener("click", () => {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+
+    document.getElementById("contact-form").addEventListener("submit", event => {
+      event.preventDefault();
+
+      const form = event.currentTarget;
+      const data = new FormData(form);
+      const name = data.get("name").trim();
+      const email = data.get("email").trim();
+      const message = data.get("message").trim();
+
+      const subject = encodeURIComponent("Website message from " + name);
+      const body = encodeURIComponent(
+        "Name: " + name + "\nEmail: " + email + "\n\n" + message
+      );
+
+      document.getElementById("form-note").textContent =
+        "Opening your email application. You will need to send the message there.";
+
+      window.location.href =
+        "mailto:?subject=" + subject + "&body=" + body;
+    });
+  </script>
+</body>
+</html>
